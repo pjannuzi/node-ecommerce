@@ -5,7 +5,7 @@ let _db;
 const mongoConnect = (callback) => {
     MongoClient.connect('mongodb+srv://pjannuzi:jannuzi1@cluster0.3mfho.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
     .then(client => {
-    console.log('connected'); 
+    console.log('EVENT: Connected to Database'); 
     _db = client.db();
     callback(client);
     })
@@ -19,7 +19,7 @@ const getDb = () => {
     if (_db) {
         return _db;
     }
-    throw 'No database found';
+    throw 'ERROR: No database found';
 }
 
 exports.mongoConnect = mongoConnect;

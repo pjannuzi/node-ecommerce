@@ -15,16 +15,14 @@ class Product {
         const db = getDb();
         let dbOp;
         if(this._id) {
-            dbOp= db.collection('products').updateOne({_id: this._id}, {$set: this});
+            dbOp = db.collection('products').updateOne({_id: this._id}, {$set: this});
+            console.log('EVENT: Updated Product!');
         } else {
             dbOp = db.collection('products').insertOne(this);
+            console.log('EVENT: Product added!');
         }
         return dbOp
-            .then(result => {
-                console.log('Save executed');
-            })
             .catch(err => console.log(err));
-        
     }
 
     static fetchAll() {
@@ -55,7 +53,7 @@ class Product {
         .collection('products')
         .deleteOne({_id: new mongodb.ObjectId(prodId)})
         .then(result => {
-            console.log('Deleted');
+            console.log('EVENT: Deleted Product');
         })
         .catch(err => console.log(err));
     };
