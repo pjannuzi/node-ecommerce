@@ -10,7 +10,6 @@ router.get('/add-product', isAuth, adminController.getAddProduct);
 
 router.post('/add-product', [
     body('title').isString().isLength({min: 3}).trim().withMessage('Titulo fora do formato correto!'),
-    body('imageUrl').isURL().withMessage('A imagem precisa ser uma URL'),
     body('price').isFloat().withMessage('O preço precisa ser um número, você pode separar as dezenas com um "."!'),
     body('description').isLength({min: 8, max: 400}).trim().withMessage('Descrição fora do formato correto!')
 ], isAuth, adminController.postAddProduct);
@@ -21,7 +20,6 @@ router.get('/edit-products/:productId', isAuth, adminController.getEditProduct);
 
 router.post('/edit-products', [
     body('title').isString().isLength({min: 3}).trim().withMessage('Titulo fora do formato correto!'),
-    body('imageUrl').isURL(),
     body('price').isFloat(),
     body('description').isLength({min: 8, max: 400}).trim()
 ], isAuth, adminController.postEditProduct);
