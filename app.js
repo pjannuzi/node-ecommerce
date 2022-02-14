@@ -8,6 +8,8 @@ const csrf = require('csurf');
 const flash = require('connect-flash');
 const multer = require('multer');
 
+require('dotenv').config();
+
 const port = process.env.PORT || 3000;
 
 const errorController = require('./controllers/error');
